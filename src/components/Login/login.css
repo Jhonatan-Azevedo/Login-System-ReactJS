@@ -2,6 +2,16 @@ h4 {
     color: #df5858 
 }
 
+.input-custom {
+    transition: .2s ease-in-out  !important;
+}
+
+.input-custom:focus {
+    outline: 0 !important;
+    border-left: 2px solid #df5858 !important;
+}
+
+
 .btn-custom {
     border-radius: 20px;
     background-color: #df5858 !important;
@@ -74,6 +84,7 @@ h4 {
 
 .field-form-login {
     width: 40vw !important;
+    height: 100vh !important;
 }
 
 #alert {
@@ -85,6 +96,20 @@ h4 {
     opacity: 1 !important;
 }
 
+.footer-login {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+}
+
+.link-custom {
+    transition: .2s ease;
+}
+
+.link-custom:hover {
+    color: #df5858 !important;
+}
 
 @media screen and (max-width: 1080px) {
     .field-form-login {
