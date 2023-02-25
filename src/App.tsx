@@ -12,10 +12,8 @@ function App() {
         <Routes>
           <Route path='/profile' element={<ProtectedLayout>
                 <h2>Hello, this is profile component</h2>
-            </ProtectedLayout>}>
-            
-          </Route>
-          <Route path='/login' element={<Login />}></Route>
+            </ProtectedLayout>} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

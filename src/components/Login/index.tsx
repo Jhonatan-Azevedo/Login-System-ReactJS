@@ -7,6 +7,7 @@ export const Login = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [showAlert, setShowAlert] = useState<boolean>(false);
+    const [loading, setloading] = useState<boolean>(false);
 
     const auth = useAuth();
     const navigate = useNavigate();
@@ -26,15 +27,19 @@ export const Login = () => {
     }
 
     async function singIn(email: string, password: string) {
+        setloading(true)
         try {
             await auth.authenticate(email, password)
             navigate("/profile")
         } catch (err) {
             setShowAlert(true);
             console.error("Invalid email or password :(")
+            setloading(false)
             await timeout(5000);
             setShowAlert(false)
             
+        } finally {
+            setloading(false)
         }
     }
 
@@ -54,10 +59,17 @@ export const Login = () => {
                         <a href="#" className="link-secondary text-decoration-none link-custom ">Forgot password?</a>
                     </div>
                     <div className="w-100 text-center mb-3">
-                        <button className="btn w-100 btn-custom" type="button" onClick={() => singIn(email, password)}>
+                        <button className="btn w-100 btn-custom" type="button" onClick={() => singIn(email, password)} disabled={loading}>
                             <span className="transition"></span>
                             <span className="gradient"></span>
-                            <span className="label"> Sing In</span>
+                            <span className="label">
+                                {
+                                    loading ?
+                                        <div className="spinner-border text-light spinner-border-sm" role="status"></div> :
+                                        <span>Sing In</span>
+                                }
+                                
+                            </span>
                         </button>
                     </div>
                     <div className="small w-100 text-center">
