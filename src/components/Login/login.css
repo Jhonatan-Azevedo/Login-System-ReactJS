@@ -1,0 +1,105 @@
+h4 {
+    color: #df5858 
+}
+
+.btn-custom {
+    border-radius: 20px;
+    background-color: #df5858 !important;
+    color: #FFF;
+}
+
+.btn-custom {
+ border: none;
+ position: relative;
+ overflow: hidden;
+ border-radius: 0.6em;
+}
+
+.gradient {
+ position: absolute;
+ width: 100% !important;
+ height: 100% !important;
+ left: 0;
+ top: 0;
+ border-radius: 0.6em;
+ margin-top: -0.25em;
+}
+
+.label {
+ position: relative;
+ top: -1px;
+}
+
+.transition {
+ transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+ transition-duration: 500ms;
+ background-color: rgba(255, 255, 255, 0.8);
+ border-radius: 9999px;
+ width: 0;
+ height: 0;
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+}
+
+.btn-custom:hover .transition {
+ width: 100% !important;
+ height: 14em;
+}
+
+.btn-custom:hover .label {
+   color: #df5858;
+}
+
+.btn-custom:active {
+ transform: scale(0.97);
+}
+
+.link-custom {
+    transition: all linear .1s;
+}
+
+.link-custom:hover {
+    color: #df5858 !important;
+}
+
+.field-bg-login {
+    width: 60vw !important;
+    background-image: url("./../../assets/bg-login-1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.field-form-login {
+    width: 40vw !important;
+}
+
+@media screen and (max-width: 1080px) {
+    .field-form-login {
+        padding: 0 !important;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .field-main-login {
+        flex-direction: column !important;
+        justify-content: start !important;
+    }
+
+    .field-bg-login {
+        width: 100vw !important;
+        height: 20vh !important;
+    }
+
+    .field-form-login {
+        margin-top: 20px !important;
+        width: 100vw !important;
+        height: 80vh !important;
+        padding: 2% !important;
+    }
+    /* .field-form-login > form {
+        width: 100vw !important;
+    } */
+}
