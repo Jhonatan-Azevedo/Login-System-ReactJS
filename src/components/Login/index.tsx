@@ -1,21 +1,40 @@
 import { useAuth } from "../../context/AuthProvider/useAuth";
 import {useNavigate} from "react-router-dom"
 import "./login.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Login = () => {
-    const [email, setEmail] = useState<string>();
-    const [password, setPassword] = useState<string>();
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [showAlert, setShowAlert] = useState<boolean>(false);
 
     const auth = useAuth();
     const navigate = useNavigate();
 
-    async function singIn(values: {email: string, password: string}) {
+    useEffect(() => {
+        const myAlert = document.querySelector("#alert") as HTMLElement;
+        if (showAlert) {
+            return myAlert.classList.add("fade");
+        }
+
+        return myAlert.classList.remove("fade");
+    }, [showAlert])
+
+
+    function timeout(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function singIn(email: string, password: string) {
         try {
-            await auth.authenticate(values.email, values.password)
+            await auth.authenticate(email, password)
             navigate("/profile")
         } catch (err) {
+            setShowAlert(true);
             console.error("Invalid email or password :(")
+            await timeout(5000);
+            setShowAlert(false)
+            
         }
     }
 
@@ -35,7 +54,7 @@ export const Login = () => {
                         <a href="#" className="link-secondary text-decoration-none link-custom ">Forgot password?</a>
                     </div>
                     <div className="w-100 text-center mb-3">
-                        <button className="btn w-100 btn-custom" type="button" onClick={() => singIn({ email, password })}>
+                        <button className="btn w-100 btn-custom" type="button" onClick={() => singIn(email, password)}>
                             <span className="transition"></span>
                             <span className="gradient"></span>
                             <span className="label"> Sing In</span>
@@ -44,7 +63,13 @@ export const Login = () => {
                     <div className="small w-100 text-center">
                         <p>Don't have an account? <a href="#" className="link-secondary text-decoration-none link-custom ">Register</a></p>
                     </div>
+
+                    <div id="alert" className="alert alert-danger text-center fade" role="alert">
+                        Invalid email or password :(
+                    </div>
                 </form>
+
+                
             </div>
         </section>
     )

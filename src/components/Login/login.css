@@ -76,6 +76,16 @@ h4 {
     width: 40vw !important;
 }
 
+#alert {
+    opacity: 0 !important;
+    transition: opacity .5s ease ;
+}
+
+#alert.fade {
+    opacity: 1 !important;
+}
+
+
 @media screen and (max-width: 1080px) {
     .field-form-login {
         padding: 0 !important;
